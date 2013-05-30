@@ -34,6 +34,13 @@ namespace PU_webservice
         }
 
         [DataMember]
+        public string Image
+        {
+            get { return image; }
+            set { image = value; }
+        }
+
+        [DataMember]
         public double Latitude
         {
             get { return latitude; }

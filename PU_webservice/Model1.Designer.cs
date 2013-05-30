@@ -16,6 +16,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
+
 [assembly: EdmSchemaAttribute()]
 namespace PU_webservice
 {
@@ -106,7 +107,7 @@ namespace PU_webservice
     /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="PU_DatabaseModel", Name="Place")]
     [Serializable()]
-    [DataContractAttribute(IsReference=true)]
+    [DataContractAttribute(IsReference= true)]
     public partial class Place : EntityObject
     {
         #region Factory Method

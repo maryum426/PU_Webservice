@@ -77,7 +77,7 @@ namespace PU_webservice
                 c.Name = t.Name;
                 c.Description = t.Description;
                 c.Category_Id = t.Category_id;
-
+                
                 list.Add(c);
             }
            
@@ -104,20 +104,28 @@ namespace PU_webservice
      /*   public List<Car> GetAllCarsXml()
         {
             return GetAllCars();
-        }
+        }*/
 
-        public bool AddCar(Car c2) {
+        public bool AddPlace(Places p) {
+            
+            //Console.WriteLine("Car Added");
+            Place p1 = new Place();
+           
+            p1.Name = p.Name;
+            p1.Longitude = Convert.ToString(p.Longitude);
+            p1.Latitude = Convert.ToString(p.Latitude);
+            p1.Description = p.Description;
+            p1.Category_id = p.Category_Id;
+            p1.Image = p.Image;
 
-            Console.WriteLine("Car Added");
-            Car newCar = new Car();
-            newCar.Year = c2.Year;
-            newCar.Make = c2.Make;
-            list.Add(newCar);
+            ent.Places.AddObject(p1);
+            ent.SaveChanges();
+            
             return true;
         
         }
 
-        public string DeleteCar(string id)
+       /* public string DeleteCar(string id)
         {
             //
             string text = "The car with Id  = " + id + " will be deleted from the system";

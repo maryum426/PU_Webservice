@@ -37,12 +37,12 @@ namespace PU_webservice
             ResponseFormat = WebMessageFormat.Json)]
         List<Places> GetAllPlacesJson();
 
-      /*  //  [OperationContract]
-        [WebInvoke(UriTemplate = "/CarPool/add", Method="POST",
+        //  [OperationContract]
+        [WebInvoke(UriTemplate = "/PlacesPool/add", Method="POST",
             ResponseFormat = WebMessageFormat.Json)]
-        bool AddCar(Car c);
+        bool AddPlace(Places place);
 
-
+        /*
         //[OperationContract]
         [WebInvoke(UriTemplate = "/CarPool/{id}", Method = "DELETE", ResponseFormat = WebMessageFormat.Json)]
         string DeleteCar(string id);
