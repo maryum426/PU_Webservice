@@ -77,6 +77,7 @@ namespace PU_webservice
                 c.Name = t.Name;
                 c.Description = t.Description;
                 c.Category_Id = t.Category_id;
+                c.Image = t.Image;
                 
                 list.Add(c);
             }
