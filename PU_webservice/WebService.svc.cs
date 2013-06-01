@@ -11,7 +11,7 @@ namespace PU_webservice
     public class WebService : IWebService
     {
         List<Places> list = null;
-        PU_DatabaseEntities ent = new PU_DatabaseEntities();
+        dbf522ec9140464818abf6a1c4013479aeEntities ent = new dbf522ec9140464818abf6a1c4013479aeEntities();
 
         public WebService()
         {
@@ -56,7 +56,8 @@ namespace PU_webservice
                 c.Latitude = Convert.ToDouble(t.Latitude);
                 c.Name = t.Name;
                 c.Description = t.Description;
-                c.Category_Id = t.Category_id;
+                c.Category_Id = t.Category_Id;
+                c.isApproved = t.isApproved;
             }
             return c;
 
@@ -76,7 +77,7 @@ namespace PU_webservice
                 c.Latitude = Convert.ToDouble(t.Latitude);
                 c.Name = t.Name;
                 c.Description = t.Description;
-                c.Category_Id = t.Category_id;
+                c.Category_Id = t.Category_Id;
                 c.Image = t.Image;
                 
                 list.Add(c);
@@ -116,10 +117,11 @@ namespace PU_webservice
             p1.Longitude = Convert.ToString(p.Longitude);
             p1.Latitude = Convert.ToString(p.Latitude);
             p1.Description = p.Description;
-            p1.Category_id = p.Category_Id;
+            p1.Category_Id = p.Category_Id;
             p1.Image = p.Image;
+            p1.isApproved = p.isApproved;
 
-            ent.Places.AddObject(p1);
+            ent.Places.Add(p1);
             ent.SaveChanges();
             
             return true;

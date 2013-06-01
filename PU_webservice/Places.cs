@@ -17,6 +17,7 @@ namespace PU_webservice
         string name;
         string description;
         string image;
+        string status;
         int cat_id;
 
         [DataMember]
@@ -66,6 +67,13 @@ namespace PU_webservice
         {
             get { return cat_id; }
             set { cat_id = value; }
+        }
+
+        [DataMember]
+        public string isApproved
+        {
+            get { return status; }
+            set { status = value; }
         }
     }
 }

@@ -4,10 +4,28 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PU_DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="PU_DatabaseModelStoreContainer">
-          <EntitySet Name="Places" EntityType="PU_DatabaseModel.Store.Places" store:Type="Tables" Schema="dbo" />
+      <Schema Namespace="dbf522ec9140464818abf6a1c4013479aeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="dbf522ec9140464818abf6a1c4013479aeModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="dbf522ec9140464818abf6a1c4013479aeModel.Store.Admin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="dbf522ec9140464818abf6a1c4013479aeModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Places" EntityType="dbf522ec9140464818abf6a1c4013479aeModel.Store.Places" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_Id" />
+          </Key>
+          <Property Name="Admin_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+          </Key>
+          <Property Name="Category_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="2000" />
+        </EntityType>
         <EntityType Name="Places">
           <Key>
             <PropertyRef Name="Id" />
@@ -18,16 +36,35 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Image" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Category_id" Type="int" Nullable="false" />
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="isApproved" Type="nvarchar" Nullable="false" MaxLength="5" />
         </EntityType>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PU_DatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="PU_DatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Places" EntityType="PU_DatabaseModel.Place" />
+      <Schema Namespace="dbf522ec9140464818abf6a1c4013479aeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="dbf522ec9140464818abf6a1c4013479aeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="dbf522ec9140464818abf6a1c4013479aeModel.Admin" />
+          <EntitySet Name="Categories" EntityType="dbf522ec9140464818abf6a1c4013479aeModel.Category" />
+          <EntitySet Name="Places" EntityType="dbf522ec9140464818abf6a1c4013479aeModel.Place" />
         </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_Id" />
+          </Key>
+          <Property Name="Admin_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+          </Key>
+          <Property Name="Category_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" Unicode="true" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Place">
           <Key>
             <PropertyRef Name="Id" />
@@ -38,23 +75,47 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Image" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Category_id" Type="Int32" Nullable="false" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="isApproved" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PU_DatabaseModelStoreContainer" CdmEntityContainer="PU_DatabaseEntities">
-          <EntitySetMapping Name="Places"><EntityTypeMapping TypeName="PU_DatabaseModel.Place"><MappingFragment StoreEntitySet="Places">
-            <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-            <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="Image" ColumnName="Image" />
-            <ScalarProperty Name="Category_id" ColumnName="Category_id" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="dbf522ec9140464818abf6a1c4013479aeModelStoreContainer" CdmEntityContainer="dbf522ec9140464818abf6a1c4013479aeEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="dbf522ec9140464818abf6a1c4013479aeModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Admin_Id" ColumnName="Admin_Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="dbf522ec9140464818abf6a1c4013479aeModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="dbf522ec9140464818abf6a1c4013479aeModel.Place">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -71,13 +132,10 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams>
-      <Diagram Name="Model1">
-        <EntityTypeShape EntityType="PU_DatabaseModel.Place" Width="1.5" PointX="0.75" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
-      </Diagram>
-    </Diagrams>
+    <Diagrams></Diagrams>
   </Designer>
 </edmx:Edmx>
