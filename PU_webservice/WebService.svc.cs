@@ -11,11 +11,13 @@ namespace PU_webservice
     public class WebService : IWebService
     {
         List<Places> list = null;
+        List<Categories> list2 = null;
         dbf522ec9140464818abf6a1c4013479aeEntities ent = new dbf522ec9140464818abf6a1c4013479aeEntities();
 
         public WebService()
         {
             list = new List<Places>();
+            list2 = new List<Categories>();
             /*Places c = new Places();
             c.Place_Id = 1;
             c.Longitude = 2.4490;
@@ -87,6 +89,53 @@ namespace PU_webservice
             return list;
         }
 
+        private List<Categories> GetAllCategories()
+        {
+            var q = from s in ent.Categories
+                    select s;
+
+
+
+            foreach (var t in q)
+            {
+                Categories c = new Categories();
+                c.Category_Id = t.Category_Id;
+                c.Name = t.Name;
+                c.Description = t.Description;
+
+                list2.Add(c);
+            }
+
+            return list2;
+        }
+
+
+        private List<Places> GetPlacesForCat(string id)
+        {
+            int catid = Convert.ToInt32(id);
+            var q = from s in ent.Places
+                    where s.Category_Id == catid
+                    select s;
+
+
+
+            foreach (var t in q)
+            {
+                Places c = new Places();
+                c.Place_Id = t.Id;
+                c.Longitude = Convert.ToDouble(t.Longitude);
+                c.Latitude = Convert.ToDouble(t.Latitude);
+                c.Name = t.Name;
+                c.Description = t.Description;
+                c.Category_Id = t.Category_Id;
+                c.Image = t.Image;
+                c.isApproved = t.isApproved;
+
+                list.Add(c);
+            }
+
+            return list;
+        }
         
        /* public Car GetCarXml(string id)
         {
@@ -101,6 +150,16 @@ namespace PU_webservice
         public List<Places> GetAllPlacesJson()
         {
             return GetAllPlaces();
+        }
+
+        public List<Places> GetPlacesForCatJson(string id)
+        {
+            return GetPlacesForCat(id);
+        }
+
+        public List<Categories> GetAllCategoriesJson()
+        {
+            return GetAllCategories();
         }
 
 

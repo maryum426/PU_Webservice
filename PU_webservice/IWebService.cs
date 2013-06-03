@@ -37,10 +37,20 @@ namespace PU_webservice
             ResponseFormat = WebMessageFormat.Json)]
         List<Places> GetAllPlacesJson();
 
+        //[OperationContract]
+        [WebGet(UriTemplate = "/CategoriesPool/json/",
+            ResponseFormat = WebMessageFormat.Json)]
+        List<Categories> GetAllCategoriesJson();
+
         //  [OperationContract]
         [WebInvoke(UriTemplate = "/PlacesPool/add", Method="POST",
             ResponseFormat = WebMessageFormat.Json)]
         bool AddPlace(Places place);
+
+        //[OperationContract]
+        [WebGet(UriTemplate = "/CategoriesPool/json/{id}",
+            ResponseFormat = WebMessageFormat.Json)]
+        List<Places> GetPlacesForCatJson(string id);
 
         /*
         //[OperationContract]
