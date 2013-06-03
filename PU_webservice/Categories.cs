@@ -14,7 +14,7 @@ namespace PU_webservice
         string name;
         string description;
 
-         [DataMember]
+        [DataMember]
         public string Name
         {
             get { return name; }
@@ -33,5 +33,6 @@ namespace PU_webservice
         {
             get { return id; }
             set { id = value; }
+        }
     }
 }
