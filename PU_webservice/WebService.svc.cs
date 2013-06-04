@@ -67,6 +67,7 @@ namespace PU_webservice
         private List<Places> GetAllPlaces()
         {
             var q = from s in ent.Places
+                    where s.isApproved == "True"
                     select s;
 
            
